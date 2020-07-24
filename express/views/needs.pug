@@ -4,19 +4,19 @@ block content
   include common/navbar.pug
   +navbar(user)
   .container.text-center
-    h1.mt-5 İhtiyaçlar
+    h1.mt-5 Needs
     div.bg-blue
       if needs
         table.table.mt-5
           thead.thead-dark
             tr
               th(scope="col") #
-              th(scope="col") İsim
-              th(scope="col") Soyisim
-              th(scope="col") İhtiyaç Tipi
-              th(scope="col") Miktar
-              th(scope="col") Telefon
-              th(scope="col") Adres
+              th(scope="col") Name
+              th(scope="col") Surname
+              th(scope="col") Need Type
+              th(scope="col") Amount
+              th(scope="col") Phone
+              th(scope="col") Address
               th(scope="col")
               th(scope="col")
           tbody
@@ -32,7 +32,7 @@ block content
                 td
                   a(href="/need/" + need.id + "/edit").mybtn-edit Edit
                 td
-                  a(onclick=`deleteNeed('${need.id}')`).mybtn-danger Sil
+                  a(onclick=`deleteNeed('${need.id}')`).mybtn-danger Delete
   script(src='/js/myscripts.js')
   
 

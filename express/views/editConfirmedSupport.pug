@@ -9,37 +9,37 @@ block content
     .row
       .col-lg-12.mt-3.mx-auto
         form(action="/editConfirmSupport",method="POST").text-center.border.border-light.p-5.rounded.bg-blue
-            p.h1.mb-4 Destek Formu
+            p.h1.mb-4 Support Form
             .row
                 .col-lg-6.mt-3
-                    p.m-0.p-0 İsim
-                    input(type="text",name="name",placeholder="İsim*",required=true,value=support.name,readonly).form-control.mb-4
+                    p.m-0.p-0 Name
+                    input(type="text",name="name",placeholder="Name*",required=true,value=support.name,readonly).form-control.mb-4
                     input(type="text",name="id",placeholder="",required=true,value=support.id,readonly).form-control.mb-4.d-none
-                    p.m-0.p-0 Soyisim
-                    input(type="text",name="surname",placeholder="Soyisim*",required=true,value=support.surname,readonly).form-control.mb-4
-                    p.m-0.p-0 İhtiyaç Tipi
-                    input(type="text",name="supportType",placeholder="İhtiyaç Tipi*",required=true,value=support.supportType,readonly).form-control.mb-4
-                    p.m-0.p-0 Miktar
+                    p.m-0.p-0 Surname
+                    input(type="text",name="surname",placeholder="Surname*",required=true,value=support.surname,readonly).form-control.mb-4
+                    p.m-0.p-0 Support Type
+                    input(type="text",name="supportType",placeholder="Support Type*",required=true,value=support.supportType,readonly).form-control.mb-4
+                    p.m-0.p-0 Amount
                     input(type="number",name="amount",placeholder="",required=true,value=support.amount,readonly).form-control.mb-4
-                    p.m-0.p-0 Gönderim Şekli
+                    p.m-0.p-0 Send Type
                     input(type="text",name="sendType",placeholder="",required=true,value=support.sendType,readonly).form-control.mb-4
                 .col-lg-6.mt-3
-                    p.m-0.p-0 Telefon
+                    p.m-0.p-0 Phone
                     input(type="number",name="phone",placeholder="",required=true,value=support.phone,readonly).form-control.mb-4
-                    p.m-0.p-0 Adres
+                    p.m-0.p-0 Address
                     input(type="text",name="address",placeholder="Adres*",required=true,value=support.address,readonly).form-control.mb-4
-                    p.m-0.p-0 Onaylayan Ad Soyad
+                    p.m-0.p-0 Approver Name Surname
                     input(type="text",name="NameSurname",placeholder="",required=true,value=user.firstname + " " + user.lastname,readonly).form-control.mb-4
                     input(type="text",name="confirmName",placeholder="",required=true,value=user.firstname,readonly).form-control.mb-4.d-none
                     input(type="text",name="confirmSurname",placeholder="",required=true,value=user.lastname,readonly).form-control.mb-4.d-none
-                    p.m-0.p-0 Onaylayan STK
+                    p.m-0.p-0 Approver NGO
                     input(type="text",name="confirmSTK",placeholder="",required=true,value=user.stk,readonly).form-control.mb-4
-                    p.m-0.p-0 Durum*
+                    p.m-0.p-0 Status*
                     select(name="status",required=true).browser-default.custom-select.mb-4
                         option(selected).d-none
-                        option(value="Onaylandı") Onaylandı
-                        option(value="Beklemede") Beklemede
-                        option(value="Kullanımda") Kullanıldı
-            button(type="submit").btn.btn-success.btn-block.mt-3.w-50.mx-auto Onayla
-            a(href="/support/" + support.id +"/delete").btn.btn-danger.btn-block.mt-3.w-50.mx-auto Sil
+                        option(value="Approved") Approved
+                        option(value="Pending") Pending
+                        option(value="Used") Used
+            button(type="submit").btn.btn-success.btn-block.mt-3.w-50.mx-auto Approve
+            a(href="/support/" + support.id +"/delete").btn.btn-danger.btn-block.mt-3.w-50.mx-auto Delete
   script(src='/js/myscripts.js')    
