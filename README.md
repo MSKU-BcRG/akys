@@ -1,2 +1,2 @@
 # A Decentralized Resource Management SystemProposal For Disasters: NGO-RMSD
-# STK-AKYS
+# Sivil Toplum Kuruluşları Afet Kaynak Yönetim Sistemi: STK-AKYS
