@@ -10,10 +10,13 @@ in the case of disasters.
 The system aims to reach more disaster victims in a more timely
 manner.
 
-## Details of the system is written as a publication. the link will be given when published.
+<img src="https://github.com/MSKU-BcRG/akys/blob/master/project-images/NGO-RMSD-simple-design.png" width="600" alt="NGO-RMSD Simple Design">
 
-![NGO-RMSD System Architecture](https://github.com/MSKU-BcRG/akys/blob/master/NGO-RMSD-architecture.jpeg?raw=true)
+## Details of the system is written as a publication. the link will be given when published.
+here
+
 ## Fig 1. NGO-RMSD System Architecture
+<img src="https://github.com/MSKU-BcRG/akys/blob/master/project-images/NGO-RMSD-architecture.jpeg" width="600" alt="NGO-RMSD System Architecture">
 
 ## Installation notes:
 # Sivil Toplum Kuruluşları Afet Kaynak Yönetim Sistemi: STK-AKYS
