@@ -2,6 +2,9 @@ Languages
 =============================
 - [ENG](#a-decentralized-resource-management-system-proposal-for-disasters-ngo-rmsd)
 - [TR](#sivil-toplum-kuruluşları-afet-kaynak-yönetim-sistemi-stk-akys)
+
+----------------------------------
+
 # A Decentralized Resource Management System Proposal For Disasters: NGO-RMSD
 The proposed system aims to enable the 
 non-governmental organizations (NGO) and public institutions to
@@ -18,6 +21,8 @@ Details of the system is written as a publication. The link will be provided whe
 <img src="https://github.com/MSKU-BcRG/akys/blob/master/project-images/NGO-RMSD-architecture.jpeg" width="600" alt="NGO-RMSD System Architecture">
 
 ## Installation Notes:
+
+----------------------------------
 
 # Sivil Toplum Kuruluşları Afet Kaynak Yönetim Sistemi: STK-AKYS
 Önerilen sistemde sivil toplum kuruluşlarının (STK) ve kamu kurumlarının afet durumunlarında güvenilir bir ortamdaki kaynakları yönetmesini ve koordine etmesini amaçlamaktadır. Sistem daha çok zamanda daha çok felaketzedeye ulaşmayı hedefliyor.
