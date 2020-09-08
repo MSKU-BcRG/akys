@@ -6,7 +6,7 @@ contract akys{
         string needID;
         string personalDataHash;
         string needType;
-        uint256 amount;
+        uint256 needAmount;
     }
     
     struct SupportOffer{
@@ -115,14 +115,14 @@ contract akys{
     function createNeed(
         string memory _needID,
         string memory _personalDataHash, 
-        string memory _needtype, 
-        uint256 _amount
+        string memory _needType, 
+        uint256 _needAmount
          )public checkAuth("CREATER"){
         NeedOffer memory newNeedOffer =  NeedOffer({
             personalDataHash : _personalDataHash,
             needID : _needID,
-            needType : _needtype,
-            amount : _amount
+            needType : _needType,
+            needAmount : _needAmount
         });
 
         if(NeedOfferList.length == 0){
@@ -147,12 +147,48 @@ contract akys{
 
     }
 
+    /*
     function showSupport(string memory _supportID)public view returns(SupportOffer memory){
         return SupportOfferMap[_supportID];
     }
 
     function showNeed(string memory _needID)public view returns(NeedOffer memory){
         return NeedOfferMap[_needID];
+    }
+    */
+
+    function showSupportByIndex(uint _supportIndex)public view returns(string memory,string memory,string memory,uint256,string memory){
+        string memory supportID = SupportOfferList[_supportIndex].supportID;
+        string memory personalDataHash = SupportOfferList[_supportIndex].personalDataHash;
+        string memory supportType = SupportOfferList[_supportIndex].supportType;
+        uint supportAmount = SupportOfferList[_supportIndex].supportAmount;
+        string memory sendType = SupportOfferList[_supportIndex].sendType;
+        return (supportID,personalDataHash,supportType,supportAmount,sendType);
+    }
+
+    function showNeedByIndex(uint _needIndex)public view returns(string memory,string memory,string memory,uint256){
+        string memory needID = NeedOfferList[_needIndex].needID;
+        string memory personalDataHash = NeedOfferList[_needIndex].personalDataHash;
+        string memory needType = NeedOfferList[_needIndex].needType;
+        uint needAmount = NeedOfferList[_needIndex].needAmount;
+        return (needID,personalDataHash,needType,needAmount);
+    }
+
+    function showSupportByID(string memory _supportID)public view returns(string memory,string memory,string memory,uint256,string memory){
+        string memory supportID = SupportOfferMap[_supportID].supportID;
+        string memory personalDataHash = SupportOfferMap[_supportID].personalDataHash;
+        string memory supportType = SupportOfferMap[_supportID].supportType;
+        uint supportAmount = SupportOfferMap[_supportID].supportAmount;
+        string memory sendType = SupportOfferMap[_supportID].sendType;
+        return (supportID,personalDataHash,supportType,supportAmount,sendType);
+    }
+
+    function showNeedByID(string memory _needID)public view returns(string memory,string memory,string memory,uint256){
+        string memory needID = NeedOfferMap[_needID].needID;
+        string memory personalDataHash = NeedOfferMap[_needID].personalDataHash;
+        string memory needType = NeedOfferMap[_needID].needType;
+        uint needAmount = NeedOfferMap[_needID].needAmount;
+        return (needID,personalDataHash,needType,needAmount);
     }
 
     function approveSupport(string memory _supportID) public  checkAuth("CHECKER"){
@@ -267,6 +303,7 @@ contract akys{
         delete NeedOfferMap[_needID];
     }
 
+    /*
     function showSupports()public view returns(SupportOffer[] memory){
         return SupportOfferList;
     }
@@ -274,6 +311,7 @@ contract akys{
     function showNeeds()public view returns(NeedOffer[] memory){
         return NeedOfferList;
     }
+    */
 
     function showAllApprovedSupports()public view returns(SupportOffer[] memory){
         return ApprovedSupportOfferList;

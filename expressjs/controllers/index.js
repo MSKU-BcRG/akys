@@ -1,14 +1,15 @@
 const models = require('../models');
 
-exports.index = function (req, res, next) {
-    var success = req.query.success;
-    if(success == "n"){
-        success = "Talebiniz başarıyla oluşturuldu."
-        res.render('index', { user: req.user ,success : success});
-    }else{
-        res.render('index', { user: req.user });
+exports.auth = function (req, res, next) {
+    var user = req.user
+    var username = user.firstname + " " + user.lastname;
+    if (user) {
+        return res.json({ message: "user available", username: username });
+    } else {
+        return res.json({ message: "user not available" });
     }
 }
+
 
 exports.submit_need = function (req, res, next) {
     return models.Need.create({
@@ -19,7 +20,7 @@ exports.submit_need = function (req, res, next) {
         phone: req.body.phone,
         address: req.body.address,
     }).then(lead => {
-        res.redirect('/?success=' + encodeURIComponent('n') );
+        res.redirect('/?success=' + encodeURIComponent('n'));
     })
 }
 
@@ -39,24 +40,14 @@ exports.submit_support = function (req, res, next) {
 
 exports.show_needs = function (req, res, next) {
     return models.Need.findAll().then(needs => {
-        res.render('needs', { needs: needs, user: req.user });
+        res.json(needs);
     });
 }
 
 exports.show_cneeds = function (req, res, next) {
     return models.ConfirmedNeed.findAll().then(needs => {
-        res.render('cNeeds', { needs: needs, user: req.user });
+        res.json(needs);
     });
-}
-
-exports.delete_need_json = function (req, res, next) {
-    return models.Need.destroy({
-        where: {
-            id: req.params.need_id
-        }
-    }).then(result => {
-        res.send({ msg: "Success" });
-    })
 }
 
 exports.delete_need = function (req, res, next) {
@@ -65,18 +56,19 @@ exports.delete_need = function (req, res, next) {
             id: req.params.need_id
         }
     }).then(result => {
-        res.redirect('/needs');
+        res.redirect('/');
     })
 }
 
 exports.show_edit_need = function (req, res, next) {
+    var user = req.user
     return models.Need.findOne({
         where: {
             id: req.params.need_id
         }
     }).then(need => {
-        res.render('editNeed', { need: need , user: req.user });;
-    });
+        res.json({ need: need, user: user });
+    })
 }
 
 exports.show_edit_cneed = function (req, res, next) {
@@ -85,7 +77,7 @@ exports.show_edit_cneed = function (req, res, next) {
             id: req.params.need_id
         }
     }).then(need => {
-        res.render('editConfirmedNeed', { need: need, user: req.user });;
+        res.json({ need: need, user: req.user });;
     });
 }
 
@@ -95,7 +87,7 @@ exports.show_edit_csupport = function (req, res, next) {
             id: req.params.support_id
         }
     }).then(support => {
-        res.render('editConfirmedSupport', { support: support, user: req.user });;
+        res.json({ support: support, user: req.user });;
     });
 }
 
@@ -108,7 +100,7 @@ exports.edit_confirm_need = function (req, res, next) {
             id: req.body.id
         }
     }).then(result => {
-        res.redirect('/confirmed_needs');
+        res.redirect('/');
     })
 }
 
@@ -120,7 +112,7 @@ exports.edit_confirm_support = function (req, res, next) {
             id: req.body.id
         }
     }).then(result => {
-        res.redirect('/confirmed_supports');
+        res.redirect('/');
     })
 }
 
@@ -143,32 +135,22 @@ exports.confirm_need = function (req, res, next) {
                 id: req.body.id
             }
         }).then(need => {
-            res.redirect('/needs');
+            res.redirect('/');
         });
-        
+
     })
 }
 
 exports.show_supports = function (req, res, next) {
     return models.Support.findAll().then(supports => {
-        res.render('supports', { supports: supports, user: req.user});
+        res.json(supports);
     });
 }
 
 exports.show_csupports = function (req, res, next) {
     return models.ConfirmedSupport.findAll().then(supports => {
-        res.render('cSupports', { supports: supports, user: req.user });
+        res.json(supports);
     });
-}
-
-exports.delete_support_json = function (req, res, next) {
-    return models.Support.destroy({
-        where: {
-            id: req.params.support_id
-        }
-    }).then(result => {
-        res.send({ msg: "Success" });
-    })
 }
 
 exports.delete_support = function (req, res, next) {
@@ -177,7 +159,7 @@ exports.delete_support = function (req, res, next) {
             id: req.params.support_id
         }
     }).then(result => {
-        res.redirect('/supports');
+        res.redirect('/');
     })
 }
 
@@ -187,7 +169,7 @@ exports.delete_cneed = function (req, res, next) {
             id: req.params.need_id
         }
     }).then(result => {
-        res.redirect('/confirmed_needs');
+        res.redirect('/');
     })
 }
 
@@ -197,17 +179,18 @@ exports.delete_csupport = function (req, res, next) {
             id: req.params.support_id
         }
     }).then(result => {
-        res.redirect('/confirmed_supports');
+        res.redirect('/');
     })
 }
 
 exports.show_edit_support = function (req, res, next) {
+    var user = req.user
     return models.Support.findOne({
         where: {
             id: req.params.support_id
         }
     }).then(support => {
-        res.render('editSupport', { support: support, user: req.user });;
+        res.json({ support: support, user: user });
     })
 }
 
@@ -230,7 +213,7 @@ exports.confirm_support = function (req, res, next) {
                 id: req.body.id
             }
         }).then(need => {
-            res.redirect('/supports');
+            res.redirect('/');
         });
 
     })
