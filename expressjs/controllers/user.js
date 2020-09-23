@@ -5,16 +5,8 @@ const passport = require('passport');
 const myPassport = require('../passport_setup')(passport);
 let flash = require('connect-flash');
 
-const { validateUser } = require('../validators/signup');
-const { isEmpty } = require('lodash');
-
-exports.show_login = function (req, res, next) {
-    res.render('user/login', { formData: {}, errors: {} });
-}
-
-exports.show_signup = function (req, res, next) {
-    res.render('user/signup', { formData: {}, errors: {} });
-}
+//const { validateUser } = require('../validators/signup');
+//const { isEmpty } = require('lodash');
 
 const generateHash = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)

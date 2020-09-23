@@ -24,5 +24,11 @@
 .absolute{position: absolute;}
 .relative{position: relative;}
 .bottom-0{bottom: 0;}
-.logout-button{padding: 0!important;border: none!important;background: none!important;}
-.mt-7px{margin-top: 7px;}
+.justify-content-none{justify-content: unset!important;align-items: unset!important;}
+@media only screen and (max-width: 1000px) {
+  .res-button {
+    margin-left: unset!important;
+  }
+}
+.lognav{display: flex;align-items: center;}
+.linktext{color:#3683CC!important;}

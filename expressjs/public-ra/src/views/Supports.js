@@ -37,42 +37,44 @@ function Supports() {
                 </div>
                 <div className="bg-blue p-2 mt-2 rounded border">
                     <div className="bg-white rounded">
-                        <table className="table mt-3 rounded">
-                            <thead className="thead-dark rounded">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Surname</th>
-                                    <th scope="col">Support Type</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Send Type</th>
-                                    <th scope="col">Phone</th>
-                                    <th scope="col">Address</th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {supports.map(support =>
-                                    <tr id={support.id}>
-                                        <th scope="row">{support.id}</th>
-                                        <td>{support.name}</td>
-                                        <td>{support.surname}</td>
-                                        <td>{support.supportType}</td>
-                                        <td>{support.amount}</td>
-                                        <td>{support.sendType}</td>
-                                        <td>{support.phone}</td>
-                                        <td>{support.address}</td>
-                                        <td>
-                                            <Link to={editSupport(support.id)} className="mybtn-edit">Edit</Link>
-                                        </td>
-                                        <td>
-                                            <a href={delSupport(support.id)} className="mybtn-danger">Delete</a>
-                                        </td>
+                        <div className="table-responsive">
+                            <table className="table table-bordered mt-3 rounded">
+                                <thead className="thead-dark rounded">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Surname</th>
+                                        <th scope="col">Support Type</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Send Type</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
                                     </tr>
-                                )}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {supports.map(support =>
+                                        <tr id={support.id}>
+                                            <th scope="row">{support.id}</th>
+                                            <td>{support.name}</td>
+                                            <td>{support.surname}</td>
+                                            <td>{support.supportType}</td>
+                                            <td>{support.amount}</td>
+                                            <td>{support.sendType}</td>
+                                            <td>{support.phone}</td>
+                                            <td>{support.address}</td>
+                                            <td>
+                                                <Link to={editSupport(support.id)} className="mybtn-edit">Edit</Link>
+                                            </td>
+                                            <td>
+                                                <a href={delSupport(support.id)} className="mybtn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

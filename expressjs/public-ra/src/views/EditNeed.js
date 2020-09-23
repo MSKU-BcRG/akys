@@ -12,44 +12,49 @@ class EditNeed extends React.Component {
         }
     }
 
-    componentDidMount() {
-        const url = 'http://localhost:8080/api/need/edit/1';
+    getUserData() {
+        const url = 'http://localhost:8080/api/getUser';
         fetch(url)
             .then((response) => response.json())
             .then((data) => this.setState({ user: data.user }));
+    }
 
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjIsInVtYWlsIjoia21tenVydGtjbkBnbWFpbC5jb20iLCJ1cm9sZSI6InVzZXIiLCJ1dXNlcm5hbWUiOiJiY3JnIiwidWxvZ2luVGltZSI6MTU5OTYwNDU3NjY2MSwiaWF0IjoxNTk5NjA0NTc2fQ.RP1iQR0MXoBqTdOWDmUuM2e8wNX3yWV4_enHBgZlssE';
+    componentDidMount() {
 
-        axios.get('https://devservice-dot-dynamic-sun-260208.appspot.com/v0/integration/17e29d391341/showNeedByID', {
+        const apiKey = '04cbdab3-90e1-4bed-8d6e-ccfce0fa894c'
+
+        axios.get('https://devservice-dot-dynamic-sun-260208.appspot.com/int/da124c9f1a874fe2/showNeed', {
             params: { args: [this.state.id] },
             headers: {
-                authorization: token,
+                ApiKey: apiKey,
             },
-        }).then((response) => {
+        }).then(async (response) => {
             const result = response.data.data;
+            await this.getUserData();
             this.setState({ need: result })
-        }).catch((err) => {
-            console.log(err)
+        }).catch(err => {
+            console.error(err)
         });
     }
 
     handleSubmit(id) {
         return event => {
             event.preventDefault()
-            const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjIsInVtYWlsIjoia21tenVydGtjbkBnbWFpbC5jb20iLCJ1cm9sZSI6InVzZXIiLCJ1dXNlcm5hbWUiOiJiY3JnIiwidWxvZ2luVGltZSI6MTU5OTYwNDU3NjY2MSwiaWF0IjoxNTk5NjA0NTc2fQ.RP1iQR0MXoBqTdOWDmUuM2e8wNX3yWV4_enHBgZlssE';
 
-            axios.post('https://devservice-dot-dynamic-sun-260208.appspot.com/v0/integration/17e29d391341/approveNeed', {
+            const apiKey = '04cbdab3-90e1-4bed-8d6e-ccfce0fa894c'
+
+            axios.post('https://devservice-dot-dynamic-sun-260208.appspot.com/int/da124c9f1a874fe2/approveNeed', {
                 args: [id],
-                account: "0x75e5195dea470A061fACdeC804aC74e2666C1c00"
+                account: "0xDd87F4bb1CB761eD3aEA8A1C1500cD71A23500ff"
             }, {
                 headers: {
-                    authorization: token,
+                    ApiKey: apiKey,
                 },
             }).then((response) => {
-                const transaction = response.data.data;
+                const transaction = response.data;
                 console.log(transaction);
-            }).catch((err) => {
-                console.error(err);
+            }).catch(err => {
+                console.error(err)
             });
         }
     }
