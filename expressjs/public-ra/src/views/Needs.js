@@ -16,11 +16,6 @@ function Needs() {
         return myPath;
     }
 
-    const delNeed = (id) => {
-        let myPath = '/need/delete/' + id + '';
-        return myPath
-    }
-
     useEffect(() => {
         showNeeds()
     }, []);
@@ -47,7 +42,7 @@ function Needs() {
         return (
             <div className="container text-center" >
                 <div className="bg-dblue rounded">
-                    <h1 className="mt-5 c-white p-3">Needs</h1>
+                    <h1 className="mt-5 c-white p-3">İhtiyaçlar</h1>
                 </div>
                 <div className="bg-blue p-2 mt-2 rounded border">
                     <div className="bg-white rounded">
@@ -56,10 +51,9 @@ function Needs() {
                                 <thead className="thead-dark rounded">
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Personal Data Hash</th>
-                                        <th scope="col">Need Type</th>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col"></th>
+                                        <th scope="col">Kişisel Veri Hash Değeri</th>
+                                        <th scope="col">İhtiyaç Tipi</th>
+                                        <th scope="col">Miktar</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -72,10 +66,7 @@ function Needs() {
                                                 <td>{need[2]}</td>
                                                 <td>{need[3]}</td>
                                                 <td>
-                                                    <Link to={editNeed(need[0])} className="mybtn-edit">Edit</Link>
-                                                </td>
-                                                <td>
-                                                    <a href={delNeed(need[0])} className="mybtn-danger">Delete</a>
+                                                    <Link to={editNeed(need[0])} className="mybtn-edit">Düzenle</Link>
                                                 </td>
                                             </tr>
                                         }

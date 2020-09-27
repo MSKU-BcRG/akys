@@ -6,34 +6,43 @@ import axios from 'axios';
 function Supports() {
     const [supports, setSupports] = useState([]);
 
-    useEffect(() => {
-        fetch("http://localhost:8080/api/supports")
-            .then((res) => {
-                return res.json();
-            })
-            .then((data) => {
-                setSupports(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
-
     const editSupport = (id) => {
         let myPath = '/support/edit/' + id + '';
         return myPath;
     }
 
-    const delSupport = (id) => {
-        let myPath = '/api/support/delete/' + id + '';
-        return myPath
+    const showPersonalData = (id) => {
+        let myPath = '/data/' + id + '';
+        return myPath;
+    }
+
+    useEffect(() => {
+        showSupports()
+    }, []);
+
+    function showSupports() {
+
+        const apiKey = '04cbdab3-90e1-4bed-8d6e-ccfce0fa894c'
+
+        axios.get('https://devservice-dot-dynamic-sun-260208.appspot.com/int/da124c9f1a874fe2/showSupports', {
+            params: { args: [] },
+            headers: {
+                ApiKey: apiKey,
+            },
+        }).then((response) => {
+            const result = response.data.data;
+            console.log(result);
+            setSupports(result);
+        }).catch(err => {
+            console.error(err)
+        });
     }
 
     if (supports) {
         return (
             <div className="container text-center" >
                 <div className="bg-dblue rounded">
-                    <h1 className="mt-5 c-white p-3">Supports</h1>
+                    <h1 className="mt-5 c-white p-3">Destekler</h1>
                 </div>
                 <div className="bg-blue p-2 mt-2 rounded border">
                     <div className="bg-white rounded">
@@ -42,35 +51,28 @@ function Supports() {
                                 <thead className="thead-dark rounded">
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Surname</th>
-                                        <th scope="col">Support Type</th>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Send Type</th>
-                                        <th scope="col">Phone</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col"></th>
+                                        <th scope="col">Kişisel Veri Hash Değeri</th>
+                                        <th scope="col">Destek Tipi</th>
+                                        <th scope="col">Miktar</th>
+                                        <th scope="col">Gönderim Şekli</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {supports.map(support =>
-                                        <tr id={support.id}>
-                                            <th scope="row">{support.id}</th>
-                                            <td>{support.name}</td>
-                                            <td>{support.surname}</td>
-                                            <td>{support.supportType}</td>
-                                            <td>{support.amount}</td>
-                                            <td>{support.sendType}</td>
-                                            <td>{support.phone}</td>
-                                            <td>{support.address}</td>
-                                            <td>
-                                                <Link to={editSupport(support.id)} className="mybtn-edit">Edit</Link>
-                                            </td>
-                                            <td>
-                                                <a href={delSupport(support.id)} className="mybtn-danger">Delete</a>
-                                            </td>
-                                        </tr>
+                                    {supports.map(support => {
+                                        if (support[0] !== "") {
+                                            return <tr key={support[0]}>
+                                                <th scope="row">{support[0]}</th>
+                                                <td><Link className="linktext" to={showPersonalData(support[0])}>{support[1].substr(0, 25) + "..."}</Link></td>
+                                                <td>{support[2]}</td>
+                                                <td>{support[3]}</td>
+                                                <td>{support[4]}</td>
+                                                <td>
+                                                    <Link to={editSupport(support[0])} className="mybtn-edit">Düzenle</Link>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
                                     )}
                                 </tbody>
                             </table>

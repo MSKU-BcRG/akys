@@ -28,7 +28,6 @@ function NeedForm() {
         let eHex = await e64.toString(CryptoJS.enc.Hex);
         let hashValue = eHex
 
-
         const apiKey = '04cbdab3-90e1-4bed-8d6e-ccfce0fa894c'
 
         const createHash = async () => {
@@ -60,27 +59,27 @@ function NeedForm() {
         <div className="col-lg-6 mt-3">
             <form onSubmit={submitNeed} method="POST" className="text-center border border-light p-5 rounded bg-blue">
                 <img src={hand} className="mb-4"></img>
-                <p className="h1 mb-4">Appeal for Aid</p>
-                <input type="text" name="name" placeholder="Name*" required className="form-control mb-4"></input>
-                <input type="text" name="surname" placeholder="Surname*" required className="form-control mb-4"></input>
+                <p className="h1 mb-4">İhtiyaç Talebi</p>
+                <input type="text" name="name" placeholder="İsim*" required className="form-control mb-4"></input>
+                <input type="text" name="surname" placeholder="Soyisim*" required className="form-control mb-4"></input>
                 <select name="needType" className="browser-default custom-select mb-4" required>
-                    <option className="d-none" defaultValue>Need Type*</option>
-                    <option value="Financial Support" >Financial Support</option>
-                    <option value="Transportation" >Transportation</option>
-                    <option value="Goods" >Goods</option>
-                    <option value="Accommodation" >Accommodation</option>
+                    <option className="d-none" defaultValue>İhtiyaç Tipi*</option>
+                    <option value="Maddi Destek" >Maddi Destek</option>
+                    <option value="Taşıma" >Taşıma</option>
+                    <option value="Eşya" >Eşya</option>
+                    <option value="Konaklama" >Konaklama</option>
                 </select>
-                <input type="number" name="amount" placeholder="Amount*" required className="form-control mb-4"></input>
+                <input type="number" name="amount" placeholder="Miktar*" required className="form-control mb-4"></input>
                 <select name="urgency" className="browser-default custom-select mb-4">
-                    <option className="d-none" defaultValue>Urgency*</option>
-                    <option value="High" >High</option>
+                    <option className="d-none" defaultValue>Aciliyet*</option>
+                    <option value="Yüksek" >Yüksek</option>
                     <option value="Normal" >Normal</option>
-                    <option value="Low" >Low</option>
+                    <option value="Düşük" >Düşük</option>
                 </select>
-                <input type="text" name="expUr" placeholder="Brief Explanation for Urgency*" required className="form-control mb-4"></input>
-                <input type="number" name="phone" placeholder="Phone*" required className="form-control mb-4"></input>
-                <input type="text" name="address" placeholder="Address*" required className="form-control mb-4"></input>
-                <button onClick={() => setCount(new Date().valueOf())} type="submit" className="btn bg-dblue btn-block mt-3 c-white" >Send</button>
+                <input type="text" name="expUr" placeholder="Aciliyet için kısa açıklama*" required className="form-control mb-4"></input>
+                <input type="number" name="phone" placeholder="Telefon*" required className="form-control mb-4"></input>
+                <input type="text" name="address" placeholder="Adres*" required className="form-control mb-4"></input>
+                <button onClick={() => setCount(new Date().valueOf())} type="submit" className="btn bg-dblue btn-block mt-3 c-white" >Gönder</button>
             </form>
         </div>
     )

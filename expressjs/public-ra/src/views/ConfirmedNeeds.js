@@ -11,6 +11,11 @@ function ConfirmedNeeds() {
         return myPath;
     }
 
+    const editConfirmedNeed = (id) => {
+        let myPath = '/confirmed_need/edit/' + id + '';
+        return myPath;
+    }
+
     useEffect(() => {
         showConfirmedNeeds()
     }, []);
@@ -39,7 +44,7 @@ function ConfirmedNeeds() {
         return (
             <div className="container text-center" >
                 <div className="bg-dblue rounded">
-                    <h1 className="mt-5 c-white p-3">Approved Needs</h1>
+                    <h1 className="mt-5 c-white p-3">Onaylanan İhtiyaçlar</h1>
                 </div>
                 <div className="bg-blue p-2 mt-2 rounded border">
                     <div className="bg-white rounded">
@@ -48,9 +53,9 @@ function ConfirmedNeeds() {
                                 <thead className="thead-dark rounded">
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Personal Data Hash</th>
-                                        <th scope="col">Need Type</th>
-                                        <th scope="col">Amount</th>
+                                        <th scope="col">Kişisel Veri Hash Değeri</th>
+                                        <th scope="col">İhtiyaç Tipi</th>
+                                        <th scope="col">Miktar</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -62,7 +67,7 @@ function ConfirmedNeeds() {
                                             <td>{need[2]}</td>
                                             <td>{need[3]}</td>
                                             <td>
-                                                <Link to="/" className="mybtn-edit">Edit</Link>
+                                                <Link to="/" className="mybtn-edit">Düzenle</Link>
                                             </td>
                                         </tr>
                                     )}

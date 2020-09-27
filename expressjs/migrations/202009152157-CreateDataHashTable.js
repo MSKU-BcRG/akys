@@ -18,7 +18,7 @@ module.exports = {
             },
             hashValue: {
                 allowNull: false,
-                type: Sequelize.STRING
+                type: Sequelize.TEXT
             },
             operationId: {
                 allowNull: false,

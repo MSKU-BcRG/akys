@@ -10,13 +10,13 @@ function Navigation() {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="container justify-content-none">
                     <Nav.Link className="nav-item p-1">
-                        <Link to="/" className="nav-link" >Home</Link>
+                        <Link to="/" className="nav-link" >Anasayfa</Link>
                     </Nav.Link>
                     <Nav.Link className="nav-item p-1 ml-auto res-button">
-                        <Link to="/signup" className="nav-link" >Register</Link>
+                        <Link to="/signup" className="nav-link" >Kayıt Ol</Link>
                     </Nav.Link>
                     <Nav.Link className="nav-item p-1 ">
-                        <Link to="/login" className="nav-link" >Login</Link>
+                        <Link to="/login" className="nav-link" >STK Yetkili Giriş</Link>
                     </Nav.Link>
                 </Nav>
             </Navbar.Collapse>

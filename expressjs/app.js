@@ -14,7 +14,7 @@ require('./passport_setup')(passport);
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'public-ra/src/index.html'));
 app.set('view engine', 'pug');
 
 app.use(cors());
@@ -40,6 +40,7 @@ app.use('/users', usersRouter);
 app.use(function (req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function (err, req, res, next) {

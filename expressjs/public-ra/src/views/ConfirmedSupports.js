@@ -1,33 +1,50 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 function ConfirmedSupports() {
     const [confirmedSupports, setConfirmedSupports] = useState([]);
 
-    useEffect(() => {
-        fetch("http://localhost:8080/api/confirmed_supports")
-            .then((res) => {
-                return res.json();
-            })
-            .then((data) => {
-                setConfirmedSupports(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+    const showPersonalData = (id) => {
+        let myPath = '/data/' + id + '';
+        return myPath;
+    }
 
     const editConfirmedSupport = (id) => {
-        let myPath = '/confirmed_support/edit/' + id + '';
-        return myPath
+        let myPath = '/confirmed_need/edit/' + id + '';
+        return myPath;
+    }
+
+    useEffect(() => {
+        showConfirmedSupports()
+    }, []);
+
+    function showConfirmedSupports() {
+
+        const apiKey = '04cbdab3-90e1-4bed-8d6e-ccfce0fa894c'
+
+        axios.get('https://devservice-dot-dynamic-sun-260208.appspot.com/int/da124c9f1a874fe2/showAllApprovedSupports', {
+            params: { args: [] },
+            headers: {
+                ApiKey: apiKey,
+            },
+        }).then(async (response) => {
+            let supports;
+            if (response.data.data[0] !== "") {
+                supports = response.data.data;
+                setConfirmedSupports(supports);
+            }
+        }).catch(err => {
+            console.error(err)
+        });
     }
 
     if (confirmedSupports) {
         return (
             <div className="container text-center" >
                 <div className="bg-dblue rounded">
-                    <h1 className="mt-5 c-white p-3">Approved Supports</h1>
+                    <h1 className="mt-5 c-white p-3">Onaylanan Destekler</h1>
                 </div>
                 <div className="bg-blue p-2 mt-2 rounded border">
                     <div className="bg-white rounded">
@@ -36,33 +53,23 @@ function ConfirmedSupports() {
                                 <thead className="thead-dark rounded">
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Surname</th>
-                                        <th scope="col">Support Type</th>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Approver Name</th>
-                                        <th scope="col">Approver NGO</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Phone</th>
-                                        <th scope="col">Address</th>
+                                        <th scope="col">Kişisel Veri Hash Değeri</th>
+                                        <th scope="col">Destek Tipi</th>
+                                        <th scope="col">Miktar</th>
+                                        <th scope="col">Gönderim Şekli</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {confirmedSupports.map(support =>
-                                        <tr id={support.id}>
-                                            <th scope="row">{support.id}</th>
-                                            <td>{support.name}</td>
-                                            <td>{support.surname}</td>
-                                            <td>{support.supportType}</td>
-                                            <td>{support.amount}</td>
-                                            <td className="row text-center"><span>{support.confirmName}</span><span>{support.confirmSurname}</span></td>
-                                            <td>{support.confirmSTK}</td>
-                                            <td>{support.status}</td>
-                                            <td>{support.phone}</td>
-                                            <td>{support.address}</td>
+                                        <tr key={support[0]}>
+                                            <th scope="row">{support[0]}</th>
+                                            <td><Link className="linktext" to={showPersonalData(support[0])}>{support[1].substr(0, 25) + "..."}</Link></td>
+                                            <td>{support[2]}</td>
+                                            <td>{support[3]}</td>
+                                            <td>{support[4]}</td>
                                             <td>
-                                                <Link to={editConfirmedSupport(support.id)} className="mybtn-edit">Edit</Link>
+                                                <Link to={editConfirmedSupport(support[0])} className="mybtn-edit">Düzenle</Link>
                                             </td>
                                         </tr>
                                     )}
