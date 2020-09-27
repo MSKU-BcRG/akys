@@ -1,8 +1,67 @@
 ### <a href="https://stk-akys.herokuapp.com/" target="_blank">`https://stk-akys.herokuapp.com/`</a>
 Languages
 =============================
-- [ENG](#a-decentralized-resource-management-system-proposal-for-disasters-ngo-rmsd)
 - [TR](#sivil-toplum-kuruluşları-afet-kaynak-yönetim-sistemi-stk-akys)
+- [ENG](#a-decentralized-resource-management-system-proposal-for-disasters-ngo-rmsd)
+
+----------------------------------
+
+# Sivil Toplum Kuruluşları Afet Kaynak Yönetim Sistemi: STK-AKYS
+Önerilen sistemde sivil toplum kuruluşlarının (STK) ve kamu kurumlarının afet durumunlarında güvenilir bir ortamdaki kaynakları yönetmesini ve koordine etmesini amaçlamaktadır. Sistem daha çok zamanda daha çok felaketzedeye ulaşmayı hedefliyor.
+
+<img src="https://github.com/MSKU-BcRG/akys/blob/master/project-images/STK-AKYS-simple-design.png" width="600" alt="STK-AKYS Basit Dizayn">
+
+Sistemin detayları yayın olarak yazılmıştır. Bağlantı yayınlandığında paylaşılacaktır.
+
+## Fig 1. STK-AKYS Sistem Mimarisi
+<img src="https://github.com/MSKU-BcRG/akys/blob/master/project-images/STK-AKYS-architecture.jpeg" width="600" alt="NGO-RMSD Sistem Mimarisi">
+
+## Kurulum Notları:
+Proje halen geliştirme aşamasındadır.
+
+### Gereksinimler
+- **NodeJS v12.16.1 >**
+
+- **Truffle v5.1.39 >**
+
+    Truffle indirme:
+
+    > `npm install -g truffle`
+
+- **Ganache CLI v6.10.1 >**
+
+    Ganache indirme:
+
+    > `npm install -g ganache-cli`
+
+
+### Başlarken
+
+Hesapları komut satırında ganache-cli'den oluşturuyoruz
+
+```
+../akys > ganache-cli
+```
+
+Yeni bir komut satırında, kontratı geliştirme ağına taşıyoruz
+
+```
+../akys > truffle migrate --network development
+```
+
+Ve geliştirme ağı içindeki fonksiyonları çağırmak için truffle konsolunu kullanıyoruz
+
+```
+../akys > truffle console
+truffle(development)>
+```
+
+### Test
+
+Blokzinciri ağı olmadan yerel test
+```
+../akys > truffle test
+```
 
 ----------------------------------
 
@@ -63,65 +122,6 @@ truffle(development)>
 
 ### Testing
 Local test without blockchain network
-```
-../akys > truffle test
-```
-
-----------------------------------
-
-# Sivil Toplum Kuruluşları Afet Kaynak Yönetim Sistemi: STK-AKYS
-Önerilen sistemde sivil toplum kuruluşlarının (STK) ve kamu kurumlarının afet durumunlarında güvenilir bir ortamdaki kaynakları yönetmesini ve koordine etmesini amaçlamaktadır. Sistem daha çok zamanda daha çok felaketzedeye ulaşmayı hedefliyor.
-
-<img src="https://github.com/MSKU-BcRG/akys/blob/master/project-images/STK-AKYS-simple-design.png" width="600" alt="STK-AKYS Basit Dizayn">
-
-Sistemin detayları yayın olarak yazılmıştır. Bağlantı yayınlandığında paylaşılacaktır.
-
-## Fig 1. STK-AKYS Sistem Mimarisi
-<img src="https://github.com/MSKU-BcRG/akys/blob/master/project-images/STK-AKYS-architecture.jpeg" width="600" alt="NGO-RMSD Sistem Mimarisi">
-
-## Kurulum Notları:
-Proje halen geliştirme aşamasındadır.
-
-### Gereksinimler
-- **NodeJS v12.16.1 >**
-
-- **Truffle v5.1.39 >**
-
-    Truffle indirme:
-
-    > `npm install -g truffle`
-
-- **Ganache CLI v6.10.1 >**
-
-    Ganache indirme:
-
-    > `npm install -g ganache-cli`
-
-
-### Başlarken
-
-Hesapları komut satırında ganache-cli'den oluşturuyoruz
-
-```
-../akys > ganache-cli
-```
-
-Yeni bir komut satırında, kontratı geliştirme ağına taşıyoruz
-
-```
-../akys > truffle migrate --network development
-```
-
-Ve geliştirme ağı içindeki fonksiyonları çağırmak için truffle konsolunu kullanıyoruz
-
-```
-../akys > truffle console
-truffle(development)>
-```
-
-### Test
-
-Blokzinciri ağı olmadan yerel test
 ```
 ../akys > truffle test
 ```
